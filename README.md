@@ -44,4 +44,5 @@ xhost +local:
 ## Policy Kit GUI Authentication
 * Install ```polkit-kde-agent```
 ---
+### Additional stuff
 Photo viewer: ```imv```

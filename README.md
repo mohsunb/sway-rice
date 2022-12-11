@@ -43,6 +43,23 @@ xhost +local:
 
 ## Policy Kit GUI Authentication
 * Install ```polkit-kde-agent```
+
+## Set Dolphin as default file manager:
+```
+xdg-mime default org.kde.dolphin.desktop inode/directory
+```
+
+## Set Firefox as default browser:
+```
+xdg-settings set default-web-browser firefox.desktop
+```
+
+## Dolphin Alacritty
+* Add following to ```$HOME/.config/kdeglobals```:
+```
+[General]
+TerminalApplication=alacritty
+```
 ---
 ### Additional stuff
 Photo viewer: ```imv```

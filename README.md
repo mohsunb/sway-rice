@@ -5,6 +5,13 @@
 # pacman -S sway swaybg wofi waybar xorg-xwayland xorg-xhost
 ```
 
+## Environment variables
+```/etc/environment```:
+```
+XDG_CURRENT_DESKTOP=sway
+QT_QPA_PLATFORM=wayland
+```
+
 ## Starting sway:
 * Add following to ```$HOME/.zprofile```:
 ```

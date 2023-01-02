@@ -23,8 +23,7 @@ set $menu wofi --show=drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/mohsun/Pictures/Wallpapers/MacOS/12-Dark.jpg fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 #
 # Example configuration:
@@ -198,30 +197,15 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 
+# Visuals
+font pango:JetbrainsMono Nerd Font Regular 12
+gaps inner 3
+default_border pixel
 bar {
 	swaybar_command waybar
 }
-
-include /etc/sway/config.d/*
-
-input type:pointer {
-	accel_profile flat
-}
-
-input type:touchpad {
-    tap enabled
-    natural_scroll enabled
-}
-
-gaps inner 5
-gaps outer 2
-
-default_border pixel
+output * bg /home/mohsun/Pictures/Wallpapers/tux.png fill
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -234,42 +218,16 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
 
-# Saves the entire screen as an image at $HOME/Pictures/Screenshots
-bindsym $mod+Print exec grim $HOME/Pictures/Screenshots/Screenshot_$(date '+%d_%m_%Y_%H_%M_%S').png
-
-# Copies the selected area into clipboard
-bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
-
-# KDE GUI authentication for PolKit
-exec /usr/lib/polkit-kde-authentication-agent-1
-
-# CopyQ clipboard
-exec copyq
-
-# Keyboard layouts
-input type:keyboard {
-    xkb_layout us,az
-    xkb_options grp:win_space_toggle
-    xkb_numlock enabled
-}
-
-# OBS (Nvidia)
-bindsym $mod+o exec prime-run obs
-
-# Dolphin
-bindsym $mod+Shift+e exec dolphin
-
-# Firefox
-bindsym $mod+Shift+f exec firefox
-
-# Toggle waybar
-bindsym $mod+Shift+o exec killall -SIGUSR1 waybar
-
 # Fix some legacy apps being unable to create windows
 exec xhost +local:
 
-# Notification Daemon
-exec swaync
+# I don't know what these do but things break without them
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
-# Toggle notification control center
-bindsym $mod+Shift+n exec swaync-client -t -sw
+# Small tweaks
+include config.d/*
+
+# Autostart
+include autostart/*

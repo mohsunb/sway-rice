@@ -2,7 +2,7 @@
 
 ## Initial packages:
 ```
-# pacman -S sway swaybg wofi
+# pacman -S sway swaybg wofi waybar xorg-xwayland xorg-xhost
 ```
 
 ## Starting sway:
@@ -10,6 +10,19 @@
 ```
 [ "$(tty)" = "/dev/tty1" ] && exec sway --unsupported-gpu
 ```
+
+## GDM:
+```
+pacman -S gdm
+```
+```
+systemctl enable gdm
+```
+Nvidia:
+```
+ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+```
+Add ```--unsupported-gpu``` to ```Exec``` line in ```/usr/share/wayland-sessions/sway.desktop```
 
 ## Qt apps:
 * Install ```qt5ct```, ```kvantum```, ```breeze``` and ```breeze-icons```
@@ -20,12 +33,8 @@
 ## Gtk apps:
 * Install ```gnome-tweaks``` and ```gnome-themes-extra```
 * Choose Adwaita_Dark and a desired icon theme in ```gnome-tweaks```
-
-## Some apps being unable to open a display
-* Install ```xorg-xwayland``` and ```xorg-xhost```
-* Run:
 ```
-xhost +local:
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 ```
 
 ## Clipboard
@@ -35,7 +44,6 @@ xhost +local:
 * Install ```grim```, ```slurp``` and ```wl-clipboard```
 
 ## OBS Studio black preview fix
-* Use ```nvidia-dkms```
 * Add ```nvidia-drm.modeset=1``` to kernel parameters
 
 ## Notifications
@@ -60,6 +68,3 @@ xdg-settings set default-web-browser firefox.desktop
 [General]
 TerminalApplication=alacritty
 ```
----
-### Additional stuff
-Photo viewer: ```imv```

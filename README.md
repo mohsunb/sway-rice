@@ -25,7 +25,7 @@ ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 Add ```--unsupported-gpu``` to ```Exec``` line in ```/usr/share/wayland-sessions/sway.desktop```
 
 ## Qt apps:
-* Install ```qt5ct```, ```kvantum```, ```breeze``` and ```breeze-icons```
+* Install ```qt5ct```, ```qt6ct```, ```kvantum```, ```breeze``` and ```breeze-icons```
 * Choose a theme in Kvantum
 * Apply ```kvantum-dark``` and choose an icon theme in Qt5ct
 * Add ```QT_QPA_PLATFORMTHEME=qt5ct``` to ```/etc/environment```
